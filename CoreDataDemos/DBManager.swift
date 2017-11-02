@@ -17,7 +17,7 @@ class DBManager: NSObject { //KVO
         return instance
     }
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    private lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -44,9 +44,13 @@ class DBManager: NSObject { //KVO
         return container
     }()
     
+    
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    
+
+    
+    internal func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -59,5 +63,20 @@ class DBManager: NSObject { //KVO
             }
         }
     }
+    
+    
+    //MARK: Public API:
+    public func save(person: Person){
+        //very simple! So Why?
+        //
+        saveContext()
+    }
+    
+    //computed property: Context
+    public var context: NSManagedObjectContext{
+        return persistentContainer.viewContext
+    }
+    
+    
     
 }
