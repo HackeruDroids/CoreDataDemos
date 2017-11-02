@@ -17,6 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        guard let storyb = window?.rootViewController?.storyboard
+        
+        
+        else{return true}
+        
+        //1) init the vc.
+        let vc = storyb.instantiateViewController(withIdentifier: "PeopleCollectionViewController")
+        
+        let nav = UINavigationController(rootViewController: vc)
+        
+        window?.rootViewController = nav
+        //2) window.root
         return true
     }
 

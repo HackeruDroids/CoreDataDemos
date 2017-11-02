@@ -17,6 +17,8 @@
 		6DF08DE31FAB76D200802E26 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF08DE11FAB76D200802E26 /* Person+CoreDataProperties.swift */; };
 		6DF08DE51FAB781800802E26 /* JPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF08DE41FAB781800802E26 /* JPerson.swift */; };
 		6DF08DE71FAB85C600802E26 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF08DE61FAB85C600802E26 /* DBManager.swift */; };
+		6DF08DE91FABA18600802E26 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF08DE81FABA18600802E26 /* AddPersonViewController.swift */; };
+		6DF08DEB1FABA1CE00802E26 /* PeopleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF08DEA1FABA1CE00802E26 /* PeopleCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		6DF08DE11FAB76D200802E26 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6DF08DE41FAB781800802E26 /* JPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPerson.swift; sourceTree = "<group>"; };
 		6DF08DE61FAB85C600802E26 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		6DF08DE81FABA18600802E26 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
+		6DF08DEA1FABA1CE00802E26 /* PeopleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 				6DF08DD11FAB6BD600802E26 /* CoreDataDemos.xcdatamodeld */,
 				6DF08DE41FAB781800802E26 /* JPerson.swift */,
 				6DF08DE61FAB85C600802E26 /* DBManager.swift */,
+				6DF08DE81FABA18600802E26 /* AddPersonViewController.swift */,
+				6DF08DEA1FABA1CE00802E26 /* PeopleCollectionViewController.swift */,
 			);
 			path = CoreDataDemos;
 			sourceTree = "<group>";
@@ -163,9 +169,11 @@
 				6DF08DE31FAB76D200802E26 /* Person+CoreDataProperties.swift in Sources */,
 				6DF08DCD1FAB6BD600802E26 /* ViewController.swift in Sources */,
 				6DF08DCB1FAB6BD600802E26 /* AppDelegate.swift in Sources */,
+				6DF08DEB1FABA1CE00802E26 /* PeopleCollectionViewController.swift in Sources */,
 				6DF08DD31FAB6BD600802E26 /* CoreDataDemos.xcdatamodeld in Sources */,
 				6DF08DE51FAB781800802E26 /* JPerson.swift in Sources */,
 				6DF08DE71FAB85C600802E26 /* DBManager.swift in Sources */,
+				6DF08DE91FABA18600802E26 /* AddPersonViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -78,5 +78,23 @@ class DBManager: NSObject { //KVO
     }
     
     
-    
+    public func getPeople() throws -> [Person]{
+        return try context.fetch(Person.fetchRequest())
+        //return []
+    }
+//    
+//    public func getPeopleOrCrash() -> [Person]{
+//        return try! context.fetch(Person.fetchRequest())
+//        //return []
+//    }
+//    
+//    public func getPeopleOrLog() -> [Person]{
+//        do{
+//        return try! context.fetch(Person.fetchRequest())
+//        }
+//        catch let err{
+//            //
+//        }
+//        //return []
+//    }
 }
