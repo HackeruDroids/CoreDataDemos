@@ -86,7 +86,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="personCell" id="Yr3-vZ-2jY">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="personCell" id="Yr3-vZ-2jY" customClass="PersonCollectionViewCell" customModule="CoreDataDemos" customModuleProvider="target">
                                 <rect key="frame" x="69" y="0.0" width="237" height="266"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -115,6 +115,10 @@
                                     <constraint firstItem="ZfS-FT-tL2" firstAttribute="top" secondItem="Yr3-vZ-2jY" secondAttribute="top" constant="8" id="qbr-sa-RfK"/>
                                     <constraint firstAttribute="bottom" secondItem="ZfS-FT-tL2" secondAttribute="bottom" constant="8" id="v0T-d8-Dra"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="emailLabel" destination="ze0-Uu-efS" id="UbT-cs-jOG"/>
+                                    <outlet property="profileImage" destination="3qb-hp-8oc" id="Su9-Dx-5Gs"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

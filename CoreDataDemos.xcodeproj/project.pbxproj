@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D3B37011FB0D18C000F5711 /* PersonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3B36FF1FB0D0B6000F5711 /* PersonCollectionViewCell.swift */; };
 		6DF08DCB1FAB6BD600802E26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF08DCA1FAB6BD600802E26 /* AppDelegate.swift */; };
 		6DF08DD01FAB6BD600802E26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF08DCE1FAB6BD600802E26 /* Main.storyboard */; };
 		6DF08DD31FAB6BD600802E26 /* CoreDataDemos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DF08DD11FAB6BD600802E26 /* CoreDataDemos.xcdatamodeld */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D3B36FF1FB0D0B6000F5711 /* PersonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCollectionViewCell.swift; sourceTree = "<group>"; };
 		6DF08DC71FAB6BD600802E26 /* CoreDataDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF08DCA1FAB6BD600802E26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DF08DCF1FAB6BD600802E26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			children = (
 				6DF08DCE1FAB6BD600802E26 /* Main.storyboard */,
 				6DF08DD61FAB6BD600802E26 /* LaunchScreen.storyboard */,
+				6D3B36FF1FB0D0B6000F5711 /* PersonCollectionViewCell.swift */,
 			);
 			path = layout;
 			sourceTree = "<group>";
@@ -70,7 +73,6 @@
 			children = (
 				6DF08DCA1FAB6BD600802E26 /* AppDelegate.swift */,
 				6DF08DD41FAB6BD600802E26 /* Assets.xcassets */,
-				6DF08DD91FAB6BD600802E26 /* Info.plist */,
 			);
 			path = supportingfiles;
 			sourceTree = "<group>";
@@ -104,6 +106,7 @@
 		6DF08DC91FAB6BD600802E26 /* CoreDataDemos */ = {
 			isa = PBXGroup;
 			children = (
+				6DF08DD91FAB6BD600802E26 /* Info.plist */,
 				6D3B36FE1FB0CF0B000F5711 /* database */,
 				6D3B36FD1FB0CEE7000F5711 /* supportingfiles */,
 				6D3B36FA1FB0C909000F5711 /* layout */,
@@ -198,6 +201,7 @@
 				6DF08DE31FAB76D200802E26 /* Person+CoreDataProperties.swift in Sources */,
 				6DF08DCB1FAB6BD600802E26 /* AppDelegate.swift in Sources */,
 				6DF08DEB1FABA1CE00802E26 /* PeopleCollectionViewController.swift in Sources */,
+				6D3B37011FB0D18C000F5711 /* PersonCollectionViewCell.swift in Sources */,
 				6DF08DD31FAB6BD600802E26 /* CoreDataDemos.xcdatamodeld in Sources */,
 				6DF08DE51FAB781800802E26 /* JPerson.swift in Sources */,
 				6DF08DE71FAB85C600802E26 /* DBManager.swift in Sources */,

@@ -9,12 +9,19 @@
 import UIKit
 
 class AddPersonViewController: UIViewController {
+    
     @objc  func saveBtn(_ sender: UIButton) {
         let email = emailText.text ?? ""
         //TODO: Show Alert or do better than that!
         
         let p = Person(email: email, image: ivPersonImage.image)
         DBManager.shared.save(person: p) //encapsulation - abstraction, oop!
+        
+        //shout that we created a new Person:
+        
+        let userInfoDictionary = ["Person": p]
+        NotificationCenter.default.post(name: .personAdded, object: nil, userInfo: userInfoDictionary)
+        
         self.dismiss(animated: true)
     }
     
@@ -64,6 +71,12 @@ extension AddPersonViewController :  UIImagePickerControllerDelegate , UINavigat
     }
 }
 
+//custom notification:
+extension Notification.Name{
+    static let personAdded = Notification.Name(rawValue: "personAdded")
+    static let personEdit = Notification.Name(rawValue: "personEdit")
+    static let personDeleted = Notification.Name(rawValue: "personDeleted")
+}
 
 public class R{
     public class id{
