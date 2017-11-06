@@ -14,6 +14,18 @@ class AddPersonViewController: UIViewController {
         let email = emailText.text ?? ""
         //TODO: Show Alert or do better than that!
         
+        if email.count < 3 {
+            let alert = UIAlertController(title: "sdfsdf", message: "dfgfg`", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                print("")
+            }))
+            
+            
+            present(alert, animated: true)
+            
+            return
+        }
+        
         let p = Person(email: email, image: ivPersonImage.image)
         DBManager.shared.save(person: p) //encapsulation - abstraction, oop!
         
@@ -29,9 +41,9 @@ class AddPersonViewController: UIViewController {
     @IBOutlet weak var ivPersonImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let iv = self.view.viewWithTag(2) as! UIImageView
-//        iv.image = UIImage(named: "paris") //spriteSheet.
-
+        //        let iv = self.view.viewWithTag(2) as! UIImageView
+        //        iv.image = UIImage(named: "paris") //spriteSheet.
+        
         ivPersonImage.image = #imageLiteral(resourceName: "paris")
         ivPersonImage.isUserInteractionEnabled = true
         
@@ -48,11 +60,11 @@ class AddPersonViewController: UIViewController {
     }
     
     @objc func pickImage(sender: UITapGestureRecognizer){
-       let picker = UIImagePickerController()
+        let picker = UIImagePickerController()
         picker.delegate = self
-       present(picker, animated: true)
+        present(picker, animated: true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
