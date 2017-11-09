@@ -11,6 +11,9 @@ import CoreData
 
 fileprivate let instance = DBManager()
 class DBManager: NSObject { //KVO
+    
+    
+    
     //computed property (class var is like a static var but can be ovveriden
     //computed property
     public class var shared: DBManager{
@@ -66,9 +69,13 @@ class DBManager: NSObject { //KVO
     
     
     //MARK: Public API:
-    public func save(person: Person){
+    public func add(person: Person){
         //very simple! So Why?
         //
+        saveContext()
+    }
+    
+    public func edit(person: Person){
         saveContext()
     }
     

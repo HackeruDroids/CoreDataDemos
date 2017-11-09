@@ -10,31 +10,52 @@ import UIKit
 
 class AddPersonViewController: UIViewController {
     
+    
+    var personToEdit: Person?
+    
     @objc  func saveBtn(_ sender: UIButton) {
         let email = emailText.text ?? ""
         //TODO: Show Alert or do better than that!
         
         if email.count < 3 {
-            let alert = UIAlertController(title: "sdfsdf", message: "dfgfg`", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Email Not Valid", message: "Must be at least 3 characters", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
                 print("")
             }))
-            
-            
             present(alert, animated: true)
-            
             return
         }
         
-        let p = Person(email: email, image: ivPersonImage.image)
-        DBManager.shared.save(person: p) //encapsulation - abstraction, oop!
         
-        //shout that we created a new Person:
         
-        let userInfoDictionary = ["Person": p]
-        NotificationCenter.default.post(name: .personAdded, object: nil, userInfo: userInfoDictionary)
+        if let personToEdit = personToEdit{
+            personToEdit.email = email
+            if let img = ivPersonImage.image{
+                //UIImage -> Data - > NSData
+                let data = UIImageJPEGRepresentation(img, 1) as NSData?
+                personToEdit.image = data
+            }
+            //Save Person to Data base
+            DBManager.shared.edit(person: personToEdit) //encapsulation - abstraction, oop!
+            //shout:
+            NotificationCenter.default.post(name: .personEdit, object: nil, userInfo: ["person" : personToEdit])
+            navigationController?.popViewController(animated: true)
+            
+        }else{
+            //new Person
+            let p = Person(email: email, image: ivPersonImage.image)
+            
+            //Save Person to Data base
+            DBManager.shared.add(person: p) //encapsulation - abstraction, oop!
+            
+            //shout that we created a new Person:
+            
+            let userInfoDictionary = ["Person": p]
+            NotificationCenter.default.post(name: .personAdded, object: nil, userInfo: userInfoDictionary)
+            self.dismiss(animated: true)
+        }
         
-        self.dismiss(animated: true)
+        
     }
     
     @IBOutlet weak var emailText: UITextField!
@@ -50,13 +71,26 @@ class AddPersonViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pickImage(sender:)))
         // Do any additional setup after loading the view.
         ivPersonImage.addGestureRecognizer(tapGesture)
-        
+        ivPersonImage.clipsToBounds = true
         
         let btn = view.viewWithTag(R.id.btn) as! UIButton
         
-        btn.clipsToBounds = true
+        //  btn.clipsToBounds = true
         //init //present
         btn.addTarget(self, action: #selector(saveBtn(_:)), for: UIControlEvents.touchUpInside)
+        
+        
+        //check if we are editing
+        guard let personToEdit = personToEdit else{return}
+        
+        emailText.text = personToEdit.email
+        
+        //ivPersonImage.image =
+        guard let imgData:NSData = personToEdit.image else {return}
+        
+        let data = imgData as Data
+        ivPersonImage.image = UIImage(data: data)
+        
     }
     
     @objc func pickImage(sender: UITapGestureRecognizer){

@@ -30,11 +30,83 @@ class PeopleCollectionViewController: UICollectionViewController {
         collectionView?.scrollToItem(at: path, at: .centeredVertically, animated: true)
     }
     
+    
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        print("Editing: " , editing) //TODO: rid when done
+        
+        //notify all the items that are displayed:
+        collectionView?.visibleCells.forEach({ (cell) in
+            if let cell = cell as? PersonCollectionViewCell{
+                cell.isEditing = editing
+            }
+        })
+        
+        collectionView?.allowsMultipleSelection = editing
+    }
+    
+    
+    
+    @objc func trash(){
+
+        let indices:[IndexPath] = collectionView?.indexPathsForSelectedItems ?? []
+     
+        
+        indices.map{data[$0.item]}.forEach { (p) in
+            //swift does not have delete object
+            //index of -> remove(at:)
+            if let i = data.index(of: p){
+                data.remove(at: i)
+                DBManager.shared.context.delete(p)
+            }
+        }
+        DBManager.shared.saveContext()
+        
+        collectionView?.deleteItems(at: indices)
+        
+        
+        
+        
+        
+        
+//        
+//        var ints: [Int]  =  indices.map {$0.item}
+//        
+//       // var peopleToDelete = ints.map { (i) -> Person in
+//        //    return data[i]
+//       // }
+//        
+//        var peopleToDelete = ints.map{data[$0]}
+//        
+//        peopleToDelete.forEach { (p) in
+//            if let i = data.index(of: p){
+//                data.remove(at: i)
+//            }
+//        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //add the trash item:
+        
+        //var items = [UIBarButtonItem]()
+        //Array<UIBarButtonItem>()
+        var items : [UIBarButtonItem] = []
+        
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        items.append(UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trash)))
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+  
+        self.setToolbarItems(items, animated: false)
+        
+        //Add the Edit Button BarButton Item
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(personAdded(notification:)), name: .personAdded, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(personEdit(notification:)), name: .personEdit, object: nil)
         
         
         let layout = self.collectionViewLayout as! UICollectionViewFlowLayout
@@ -61,6 +133,21 @@ class PeopleCollectionViewController: UICollectionViewController {
         // Do any additional setup after loading the view.
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonTapped))
+    }
+    
+    @objc func personEdit(notification: Notification){
+        print("Edit")
+        guard let info = notification.userInfo,
+        let person = info["person"] as? Person
+        else {return}
+  
+        for (idx, p) in data.enumerated(){
+            if p == person {
+                let indexPath = IndexPath(item: idx, section: 0)
+                collectionView?.reloadItems(at: [indexPath])
+                break
+            }
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -109,7 +196,7 @@ class PeopleCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PersonCollectionViewCell
         
         // Configure the cell
-        
+        cell.isEditing = self.isEditing
         let p = data[indexPath.item]
         
         cell.emailLabel.text = p.email
@@ -122,10 +209,26 @@ class PeopleCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        let selectedCount = collectionView.indexPathsForSelectedItems?.count ?? 0
+        navigationController?.setToolbarHidden(selectedCount == 0, animated: true)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if isEditing {
+            //code...
+              self.navigationController?.setToolbarHidden(false, animated: true)
+            return
+        }
         //1 init the vc
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddPersonViewController") as! AddPersonViewController
         
+        
+        let p = data[indexPath.item]
+        vc.personToEdit = p
         
         //2) push it to the navigation controller
         self.navigationController?.pushViewController(vc, animated: true)
